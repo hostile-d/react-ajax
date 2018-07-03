@@ -5,15 +5,13 @@ export default class Card extends React.Component {
     render() {
         return (
             <div className="card">
-                <img
-                    className="card__img"
-                    src="https://picsum.photos/300/300"
-                />
-                <h3 className="card__title">Card title</h3>
-                <p className="card__copy">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Fuga, nihil!
-                </p>
+                <div className="card__img-wrapper">
+                    <img className="card__img" src={this.props.img} />
+                </div>
+                <div className="card__content">
+                    <h3 className="card__title">{this.props.title}</h3>
+                    <p className="card__copy">{this.props.copy}</p>
+                </div>
             </div>
         );
     }

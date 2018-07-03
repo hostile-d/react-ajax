@@ -1,0 +1,17 @@
+[
+    {
+        "img": "https://picsum.photos/300/300",
+        "title": "First card",
+        "copy": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+    },
+    {
+        "img": "https://picsum.photos/300/301",
+        "title": "Second card",
+        "copy": "Lorem ipsum dolor sit amet elit."
+    },
+    {
+        "img": "https://picsum.photos/300/302",
+        "title": "Third card",
+        "copy": "Lorem ipsum dolor sit amet consectetur."
+    }
+]
