@@ -9,9 +9,9 @@ export default class Grid extends React.Component {
     render() {
         return (
             <div className="grid">
-                {this.props.cards.map(card => (
+                {this.props.cards.map((card, index) => (
                     <Card
-                        key={card.id}
+                        key={index}
                         img={card.img}
                         title={card.title}
                         copy={card.copy}

@@ -1,7 +1,7 @@
 import styles from './generic/settings.scss';
 import React from 'react';
 import Grid from './components/grid/grid.jsx';
-import SampleCards from './sample-cards.json';
+import axios from 'axios';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -14,8 +14,10 @@ export default class App extends React.Component {
         this.getCards();
     }
     getCards() {
-        const cards = [...SampleCards];
-        this.setState({ cards });
+        axios.get(`/api/sample-cards`).then(res => {
+            const cards = [...res.data];
+            this.setState({ cards });
+        });
     }
     render() {
         return <Grid cards={this.state.cards} />;
