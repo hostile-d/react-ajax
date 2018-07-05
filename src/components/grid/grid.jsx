@@ -3,12 +3,10 @@ import React from 'react';
 import Card from '../card/card.jsx';
 
 export default class Grid extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div className="grid">
+                {/* {console.log(this.props.cards)} */}
                 {this.props.cards.map((card, index) => (
                     <Card
                         key={index}

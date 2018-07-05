@@ -1,25 +1,50 @@
 import styles from './generic/settings.scss';
 import React from 'react';
-import Grid from './components/grid/grid.jsx';
 import axios from 'axios';
+import Grid from './components/grid/grid.jsx';
+import Filters from './components/filters/filters.jsx';
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards: []
+            cards: [],
+            filters: [],
+            requestParameters: {}
         };
     }
     componentDidMount() {
-        this.getCards();
+        this.loadCards();
+        this.loadFilters();
     }
-    getCards() {
-        axios.get(`/api/sample-cards`).then(res => {
-            const cards = [...res.data];
-            this.setState({ cards });
+    loadCards() {
+        axios
+            .get(`/api/sample-cards`, {
+                params: {
+                    tag: 'night'
+                }
+            })
+            .then(res => {
+                const cards = [...res.data];
+                this.setState({ cards });
+            });
+    }
+    loadFilters() {
+        axios.get(`/api/sample-filters`).then(res => {
+            const filters = [...res.data];
+            this.setState({ filters });
         });
     }
+    setRequestParameters(parameter) {}
     render() {
-        return <Grid cards={this.state.cards} />;
+        return (
+            <div className="container">
+                <Filters
+                    filters={this.state.filters}
+                    setRequestParameters={this.setRequestParameters}
+                />
+                <Grid cards={this.state.cards} />
+            </div>
+        );
     }
 }

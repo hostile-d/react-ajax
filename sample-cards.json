@@ -2,16 +2,19 @@
     {
         "img": "https://picsum.photos/300/300",
         "title": "First card",
-        "copy": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+        "copy": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+        "category": "first"
     },
     {
         "img": "https://picsum.photos/300/301",
         "title": "Second card",
-        "copy": "Lorem ipsum dolor sit amet elit."
+        "copy": "Lorem ipsum dolor sit amet elit.",
+        "category": "second"
     },
     {
         "img": "https://picsum.photos/300/302",
         "title": "Third card",
-        "copy": "Lorem ipsum dolor sit amet consectetur."
+        "copy": "Lorem ipsum dolor sit amet consectetur.",
+        "category": "second"
     }
 ]
