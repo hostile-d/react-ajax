@@ -7,7 +7,6 @@ export default class Dropdown extends React.Component {
             <div
                 className="dropdown"
                 onChange={this.props.setRequestParameters.bind(
-                    this,
                     this.props.filter
                 )}
             >

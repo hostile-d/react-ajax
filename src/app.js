@@ -9,8 +9,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             cards: [],
-            filters: [],
-            requestParameters: {}
+            filters: []
         };
     }
     componentDidMount() {
@@ -18,6 +17,7 @@ export default class App extends React.Component {
         this.loadFilters();
     }
     loadCards() {
+        console.log(this.state.requestParameters);
         axios
             .get(`/api/sample-cards`, {
                 params: {
@@ -35,10 +35,10 @@ export default class App extends React.Component {
             this.setState({ filters });
         });
     }
-    setRequestParameters(filter, event) {
+    setRequestParameters(parameters) {
         const obj = {};
         obj[filter.name] = event.target.value;
-        console.log(obj);
+        this.setState({ requestParameters: obj });
     }
     render() {
         return (
