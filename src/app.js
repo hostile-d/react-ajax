@@ -35,7 +35,11 @@ export default class App extends React.Component {
             this.setState({ filters });
         });
     }
-    setRequestParameters(parameter) {}
+    setRequestParameters(filter, event) {
+        const obj = {};
+        obj[filter.name] = event.target.value;
+        console.log(obj);
+    }
     render() {
         return (
             <div className="container">

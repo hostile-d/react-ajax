@@ -16,5 +16,11 @@
         "title": "Third card",
         "copy": "Lorem ipsum dolor sit amet consectetur.",
         "category": "second"
+    },
+    {
+        "img": "https://picsum.photos/300/303",
+        "title": "Fourth card",
+        "copy": "Lorem ipsum dolor sit amet.",
+        "category": "first"
     }
 ]

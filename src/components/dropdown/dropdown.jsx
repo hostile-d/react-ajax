@@ -4,9 +4,14 @@ import React from 'react';
 export default class Dropdown extends React.Component {
     render() {
         return (
-            <div className="dropdown">
+            <div
+                className="dropdown"
+                onChange={this.props.setRequestParameters.bind(
+                    this,
+                    this.props.filter
+                )}
+            >
                 <select className="dropdown__select">
-                    {console.log(this.props.filter.values)}
                     {this.props.filter.values.map((value, index) => (
                         <option key={index} value={value}>
                             {value}

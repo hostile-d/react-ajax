@@ -3,7 +3,6 @@ import React from 'react';
 import Dropdown from '../dropdown/dropdown.jsx';
 
 export default class Filters extends React.Component {
-    componentDidMount() {}
     render() {
         return (
             <div className="filters">
@@ -11,7 +10,7 @@ export default class Filters extends React.Component {
                     <Dropdown
                         key={index}
                         filter={filter}
-                        onChange={this.props.setFilters}
+                        setRequestParameters={this.props.setRequestParameters}
                     />
                 ))}
             </div>
