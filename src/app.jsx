@@ -18,11 +18,10 @@ export default class App extends React.Component {
         this.loadFilters();
     }
     loadCards() {
-        console.log(this.state.requestParameters);
         axios
             .get(`/api/sample-cards`, {
                 params: {
-                    tag: 'night'
+                    ...this.state.requestParameters
                 }
             })
             .then(res => {
@@ -37,9 +36,21 @@ export default class App extends React.Component {
         });
     }
     setRequestParameters = (event, filter) => {
-        const requestParameters = { ...this.state.requestParameters };
-        requestParameters[filter.name] = event.target.value;
-        this.setState({ requestParameters }, this.loadCards);
+        if (event.target.value === '') {
+            const requestParameters = { ...this.state.requestParameters };
+            for (var key in requestParameters) {
+                if (requestParameters.hasOwnProperty(key)) {
+                    if (filter.name === key) {
+                        delete requestParameters[key];
+                    }
+                }
+            }
+            this.setState({ requestParameters }, this.loadCards);
+        } else {
+            const requestParameters = { ...this.state.requestParameters };
+            requestParameters[filter.name] = event.target.value;
+            this.setState({ requestParameters }, this.loadCards);
+        }
     };
     render() {
         return (

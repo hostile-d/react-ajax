@@ -3,24 +3,28 @@
         "img": "https://picsum.photos/300/300",
         "title": "First card",
         "copy": "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-        "category": "first"
+        "year": "2012",
+        "month": "January"
     },
     {
         "img": "https://picsum.photos/300/301",
         "title": "Second card",
         "copy": "Lorem ipsum dolor sit amet elit.",
-        "category": "second"
+        "year": "2012",
+        "month": "April"
     },
     {
         "img": "https://picsum.photos/300/302",
         "title": "Third card",
         "copy": "Lorem ipsum dolor sit amet consectetur.",
-        "category": "second"
+        "year": "2015",
+        "month": "May"
     },
     {
         "img": "https://picsum.photos/300/303",
         "title": "Fourth card",
         "copy": "Lorem ipsum dolor sit amet.",
-        "category": "first"
+        "yaear": "2013",
+        "month": "July"
     }
 ]
