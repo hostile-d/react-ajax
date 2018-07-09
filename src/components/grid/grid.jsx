@@ -14,6 +14,8 @@ export default class Grid extends React.Component {
                         img={card.img}
                         title={card.title}
                         copy={card.copy}
+                        year={card.year}
+                        month={card.month}
                     />
                 ))}
             </div>
