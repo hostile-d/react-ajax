@@ -1,8 +1,15 @@
 var express = require('express');
-var app = express();
-
+var path = require('path');
 var sampleCards = require('./data/sample-cards.json');
 var sampleFilters = require('./data/sample-filters.json');
+
+var app = express();
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('/', (_req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 app.get('/api/sample-cards', function(req, res) {
     sendFilteredData(req, res);
@@ -28,9 +35,7 @@ function sendFilteredData(req, res) {
         });
     }
 
-    setTimeout(() => {
-        res.status(200).send(filteredCards);
-    }, 2000);
+    res.status(200).send(filteredCards);
 }
 var server = app.listen(3000, function() {
     console.log('app running on port.', server.address().port);
