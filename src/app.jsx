@@ -9,7 +9,8 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             cards: [],
-            filters: []
+            filters: [],
+            requestParameters: {}
         };
     }
     componentDidMount() {
@@ -35,11 +36,11 @@ export default class App extends React.Component {
             this.setState({ filters });
         });
     }
-    setRequestParameters(parameters) {
-        const obj = {};
-        obj[filter.name] = event.target.value;
-        this.setState({ requestParameters: obj });
-    }
+    setRequestParameters = (event, filter) => {
+        const requestParameters = { ...this.state.requestParameters };
+        requestParameters[filter.name] = event.target.value;
+        this.setState({ requestParameters }, this.loadCards);
+    };
     render() {
         return (
             <div className="container">

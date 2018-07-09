@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('../../../Library/Caches/typescript/2.9/node_modules/@types/express');
 var app = express();
 
 var sampleCards = require('./data/sample-cards.json');
