@@ -10,7 +10,8 @@ export default class App extends React.Component {
         this.state = {
             cards: [],
             filters: [],
-            requestParameters: {}
+            requestParameters: {},
+            isLoading: false
         };
     }
     componentDidMount() {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
         this.loadFilters();
     }
     loadCards() {
+        this.setState({ isLoading: true });
         axios
             .get(`/api/sample-cards`, {
                 params: {
@@ -25,6 +27,7 @@ export default class App extends React.Component {
                 }
             })
             .then(res => {
+                this.setState({ isLoading: false });
                 const cards = [...res.data];
                 this.setState({ cards });
             });
@@ -59,7 +62,10 @@ export default class App extends React.Component {
                     filters={this.state.filters}
                     setRequestParameters={this.setRequestParameters}
                 />
-                <Grid cards={this.state.cards} />
+                <Grid
+                    cards={this.state.cards}
+                    isLoading={this.state.isLoading}
+                />
             </div>
         );
     }

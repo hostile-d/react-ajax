@@ -28,7 +28,9 @@ function sendFilteredData(req, res) {
         });
     }
 
-    res.status(200).send(filteredCards);
+    setTimeout(() => {
+        res.status(200).send(filteredCards);
+    }, 2000);
 }
 var server = app.listen(3000, function() {
     console.log('app running on port.', server.address().port);
