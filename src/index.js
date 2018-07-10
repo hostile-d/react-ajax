@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.jsx';
+import Router from './components/router/router.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Router />, document.getElementById('app'));
 
 module.hot.accept();

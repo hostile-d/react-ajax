@@ -1,9 +1,9 @@
-import styles from './generic/settings.scss';
+import styles from '../../generic/settings.scss';
 import React from 'react';
 import axios from 'axios';
-import Grid from './components/grid/grid.jsx';
-import Filters from './components/filters/filters.jsx';
-
+import Grid from '../grid/grid.jsx';
+import Filters from '../filters/filters.jsx';
+import queryString from 'query-string';
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -15,8 +15,32 @@ export default class App extends React.Component {
         };
     }
     componentDidMount() {
-        this.loadCards();
         this.loadFilters();
+        this.loadCards();
+    }
+    getQueryString() {
+        const params = queryString.parse(this.props.location.search);
+        const filterNames = {};
+        this.state.filters.forEach(item => {
+            filterNames[item.name] = true;
+        });
+        for (var key in params) {
+            if (!filterNames.hasOwnProperty(key)) {
+                delete params[key];
+            }
+        }
+        const requestParameters = {
+            ...this.state.requestParameters,
+            ...params
+        };
+        this.setState({ requestParameters });
+        this.setState({ requestParameters }, this.loadCards);
+    }
+    setQueryString() {
+        this.props.history.push({
+            pathname: '/',
+            search: `?${queryString.stringify(this.state.requestParameters)}`
+        });
     }
     loadCards() {
         this.setState({ isLoading: true });
@@ -30,22 +54,24 @@ export default class App extends React.Component {
                 this.setState({ isLoading: false });
                 const cards = [...res.data];
                 this.setState({ cards });
+                this.setQueryString();
             });
     }
     loadFilters() {
         axios.get(`/api/sample-filters`).then(res => {
             const filters = [...res.data];
-            this.setState({ filters });
+            this.setState({ filters }, this.getQueryString);
         });
     }
     setRequestParameters = (event, filter) => {
         if (event.target.value === '') {
             const requestParameters = { ...this.state.requestParameters };
             for (var key in requestParameters) {
-                if (requestParameters.hasOwnProperty(key)) {
-                    if (filter.name === key) {
-                        delete requestParameters[key];
-                    }
+                if (
+                    requestParameters.hasOwnProperty(key) &&
+                    filter.name === key
+                ) {
+                    delete requestParameters[key];
                 }
             }
             this.setState({ requestParameters }, this.loadCards);
